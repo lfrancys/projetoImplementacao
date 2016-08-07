@@ -22,7 +22,7 @@ class CreateProdutoTable extends Migration
             $table->boolean('destaqueProduto')->default(false);
 
             $table->foreign('idCategoria')->references('id')->on('categoria');
-            $table->nullableTimestamps();
+            $table->timestamps();
         });
     }
 

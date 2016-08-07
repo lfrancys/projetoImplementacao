@@ -13,9 +13,10 @@ class CreatePessoaTable extends Migration
     public function up()
     {
         Schema::create('pessoa', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('idPessoa');
             $table->string('nomePessoa');
-            $table->string('emailPessoa');
+            $table->string('emailPessoa')->unique();
+            $table->string('cpfPessoa', 11)->unique();
             $table->string('senhaPessoa');
             $table->boolean('statusPessoa')->default(true);
             $table->timestamps();
