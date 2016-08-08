@@ -25,7 +25,7 @@ class ProdutoService extends ServiceAbstract{
 
     public function listaProdutosDestaque(){
 
-        return $this->findBy(['destaqueProduto' => 1])->orderBy('created_at', 'desc')->get();
+        return $this->findBy(['destaqueProduto' => 1])->orderBy('created_at', 'desc')->paginate(9);
 
     }
 

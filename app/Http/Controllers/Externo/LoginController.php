@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function destroy(){
         \Auth::logout();
-        return redirect()->route('autenticacao.login.index')->with(['success' => 'Você saiu do sistema']);
+        return redirect()->route('index')->with(['success' => 'Você saiu do sistema']);
     }
 
 

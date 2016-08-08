@@ -50,7 +50,8 @@ class CarrinhoController extends Controller
     {
         try{
             if($this->carrinhoService->salvaSession($request->all(), $id)){
-                return redirect()->back()->with('success', 'Produto adicionado ao carrinho');
+                //dd(session()->all());
+                return redirect()->back()->with('success', 'Produto atualizado no carrinho');
             }
         }catch (\Exception $e) {
             return redirect()->back()->withErrors(['erro' => $e->getMessage()]);

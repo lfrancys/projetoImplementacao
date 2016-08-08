@@ -1,23 +1,21 @@
 @extends('../layout/index')
 
-@include('content.Externo.css')
-
 @section('content')
 
-    @if(isset($total))
-    <div class="bg-primary">
-        Total da compra: <b>R$ {{ $total }}</b>
-    </div>
-    @endif
+    <div class="meio">
+        <div class="row">
+            @if(isset($total))
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <p class="bg-info">
+                    Total da compra: <b>R$ {{ $total }}</b>
+                </p>
+            </div>
+            @endif
 
-    <br/><br/>
-
-    @if(isset($produtos))
-        @foreach($produtos as $produto)
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
+            <br/><br/>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                @foreach($produtos as $produto)
+                    <div class="col-sm-4 col-md-4 col-lg-4">
                         <div class="panel panel-primary">
                             <div class="panel-heading">{!! $produto->nomeProduto !!} </div>
                             <div class="panel-body">
@@ -29,22 +27,20 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
             </div>
-        @endforeach
-    @endif
+            <br/><br/>
+            <div class="col-sm-12 col-md-12 col-lg-12 form-group">
 
-    <br/><br/>
+                {!! Form::open(array('url' => route('meu-carrinho.store'), 'method' => 'POST', 'id' => 'formFinalizaCompra', 'class' => 'form')) !!}
 
-    <div  class="form-group">
-        {!! Form::open(array('url' => route('meu-carrinho.store'), 'method' => 'POST', 'id' => 'formFinalizaCompra', 'class' => 'form')) !!}
+                <div  class="form-group">
+                    {!! Form::submit('Finalizar compra', ['class' => 'btn btn-primary', 'id' => 'btnFinalizarCompra']) !!}
+                </div>
 
-        <div  class="form-group">
-            {!! Form::submit('Finalizar compra', ['class' => 'btn btn-primary', 'id' => 'btnFinalizarCompra']) !!}
+                {!! Form::close() !!}
+            </div>
         </div>
-
-        {!! Form::close() !!}
-
-
     </div>
+
 @endsection

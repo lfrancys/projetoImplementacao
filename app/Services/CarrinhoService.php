@@ -71,14 +71,21 @@ class CarrinhoService {
         try {
             $carrinho = session()->has('carrinho') ? session()->pull('carrinho') : [];
 
-            if (array_key_exists($id, $carrinho)) {
-                $carrinho[$id]->qty++;
-            } else {
+            if (!array_key_exists($id, $carrinho)) {
                 $carrinho[$id] = (object)[
                     'productId' => $id,
-                    'qty' => $dados['qtd']
+                    'qty' => 0
                 ];
             }
+
+            if(!isset($dados['qtdProduto']))
+                $carrinho[$id]->qty++;
+            else
+                $carrinho[$id]->qty = $dados['qtdProduto'];
+
+
+            if($carrinho[$id]->qty == 0)
+                unset($carrinho[$id]);
 
             session()->put('carrinho', $carrinho);
             return true;

@@ -6,6 +6,13 @@
         border-radius: 0;
     }
 
+    .meio{
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin-right: 10px !important;
+        margin-left: 10px !important;
+    }
+
     /* Remove the jumbotron's default bottom margin */
     .jumbotron {
         margin-bottom: 0;
@@ -13,6 +20,10 @@
 
     .panel-footer{
         height: 60px;
+    }
+
+    .bg-info {
+        padding: 15px;
     }
 
     /* Add a gray background color and some padding to the footer */

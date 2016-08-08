@@ -33,6 +33,6 @@ class CreateFaturaprodutosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('FaturaProdutos');
+        Schema::drop('faturaProdutos');
     }
 }

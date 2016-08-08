@@ -29,7 +29,7 @@ class ProdutoSeeder extends Seeder
                 'nomeProduto'           => $this->faker->name,
                 'idCategoria'           => $categoria[rand(0, (count($categoria)-1))]->id,
                 'fotoProduto'           => $this->faker->randomElement(['1.jpg', '2.jpg', '3.jpg']),
-                'precoProduto'          => $this->faker->randomFloat(2),
+                'precoProduto'          => $this->faker->randomFloat(2, 0, 100),
                 'estoqueProduto'        => $this->faker->numberBetween(0, 100),
                 'destaqueProduto'       => $this->faker->randomElement([1, 0])
             ]);

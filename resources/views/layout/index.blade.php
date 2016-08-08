@@ -24,7 +24,6 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="{{route('index')}}">Home</a></li>
-                    <li><a href="#">Products</a></li>
                     <li><a href="{{route('meu-carrinho.index')}}"><span class="glyphicon glyphicon-shopping-cart"></span> Meu Carrinho</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
