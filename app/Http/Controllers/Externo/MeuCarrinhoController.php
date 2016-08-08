@@ -2,6 +2,7 @@
 
 namespace estudo\Http\Controllers\Externo;
 
+use estudo\Jobs\FaturaJob;
 use estudo\Services\CarrinhoService;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class MeuCarrinhoController extends Controller
     {
         try{
             if($produtos = $this->carrinhoService->all()){
-                return view('content.carrinho.index')->with('produtos', $produtos);
+                return view('content.MeuCarrinho.index')->with('produtos', $produtos);
             }
         }catch (\Exception $e) {
             return redirect()->back()->withErrors(['erro' => $e->getMessage()]);
@@ -53,7 +54,15 @@ class MeuCarrinhoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+
+            $this->dispatch(new FaturaJob());
+            return redirect()->route('index')->with(['success' => 'Compra realizada com sucesso']);
+
+        }catch (\Exception $e) {
+            return redirect()->route('meu-carrinho.index')->withErrors(['erro' => $e->getMessage()]);
+        }
+
     }
 
     /**

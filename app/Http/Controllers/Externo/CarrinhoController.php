@@ -26,13 +26,17 @@ class CarrinhoController extends Controller
      */
     public function index()
     {
-
+        return view('content.Carrinho.index');
     }
 
-    public function create(){
-
-        return view('index');
-
+    public function store(Request $request){
+        try{
+            if($fatura = $this->carrinhoService->geraResumo($request->all())){
+                return view('content.Carrinho.index')->with(['total' => $fatura['total'], 'produtos' => $fatura['produtos']]);
+            }
+        }catch (\Exception $e) {
+            return redirect()->back()->withErrors(['erro' => $e->getMessage()]);
+        }
     }
 
     /**

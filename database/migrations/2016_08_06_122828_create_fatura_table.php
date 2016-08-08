@@ -14,12 +14,11 @@ class CreateFaturaTable extends Migration
     {
         Schema::create('fatura', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('clienteFatura');
+            $table->string('clienteFatura');
             $table->string('ipClienteFatura');
             $table->float('valorFatura');
             $table->text('obsFatura');
 
-            $table->foreign('clienteFatura')->references('idPessoa')->on('pessoa');
             $table->timestamps();
         });
     }

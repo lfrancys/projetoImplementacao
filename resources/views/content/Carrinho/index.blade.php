@@ -4,40 +4,47 @@
 
 @section('content')
 
-    @foreach($produtos as $produto)
+    @if(isset($total))
+    <div class="bg-primary">
+        Total da compra: <b>R$ {{ $total }}</b>
+    </div>
+    @endif
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">{!! $produto->nomeProduto !!} </div>
-                    <div class="panel-body">
-                        <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-                    </div>
-                    <div class="panel-footer">
-                        <span style="float: left;"> R$ {{ $produto->precoProduto }} </span>
-                        <span style="float: right;"> Quantidade {{ $produto->qtdProduto }} </span>
+    <br/><br/>
+
+    @if(isset($produtos))
+        @foreach($produtos as $produto)
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">{!! $produto->nomeProduto !!} </div>
+                            <div class="panel-body">
+                                <img src="http://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                            </div>
+                            <div class="panel-footer">
+                                <span style="float: left;"> R$ {{ $produto->precoProduto }} </span>
+                                <span style="float: right;"> Quantidade {{ $produto->qtdProduto }} </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    @endif
 
-        <br/><br/>
-        {!! Form::open(array('url' => route('carrinho.create'), 'method' => 'POST', 'id' => 'formCarrinho', 'class' => 'form')) !!}
-            <div  class="form-group">
-                {!! Form::label('nomePessoa', 'Nome:') !!}
-                {!! Form::text('nomePessoa', null, [ 'class' => "w3-input"]) !!}
-            </div>
-            <div  class="form-group">
-                {!! Form::label('emailPessoa', 'Email:') !!}
-                {!! Form::text('emailPessoa', null, [ 'class' => "w3-input"]) !!}
-            </div>
-            <div  class="form-group">
-                {!! Form::submit('Concluir compra', ['class' => 'btn btn-primary', 'id' => 'btnConcluirCompra']) !!}
-            </div>
+    <br/><br/>
+
+    <div  class="form-group">
+        {!! Form::open(array('url' => route('meu-carrinho.store'), 'method' => 'POST', 'id' => 'formFinalizaCompra', 'class' => 'form')) !!}
+
+        <div  class="form-group">
+            {!! Form::submit('Finalizar compra', ['class' => 'btn btn-primary', 'id' => 'btnFinalizarCompra']) !!}
+        </div>
+
         {!! Form::close() !!}
-    <div>
+
 
     </div>
 @endsection
