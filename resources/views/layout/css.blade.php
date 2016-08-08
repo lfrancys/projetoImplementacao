@@ -11,6 +11,10 @@
         margin-bottom: 0;
     }
 
+    .panel-footer{
+        height: 60px;
+    }
+
     /* Add a gray background color and some padding to the footer */
     footer {
         background-color: #f2f2f2;
