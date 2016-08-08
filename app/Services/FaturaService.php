@@ -4,6 +4,7 @@ use Andersonef\Repositories\Abstracts\ServiceAbstract;
 use estudo\Exceptions\FaturaException;
 use Illuminate\Database\DatabaseManager;
 use \estudo\Repositories\FaturaRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 /**
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Request;
  */
 class FaturaService extends ServiceAbstract{
     protected $faturaProdutosService;
+    protected $auth;
 
     /**
      * This constructor will receive by dependency injection a instance of FaturaRepository and DatabaseManager.
@@ -21,10 +23,17 @@ class FaturaService extends ServiceAbstract{
      * @param FaturaRepository $repository
      * @param DatabaseManager $db
      */
-    public function __construct(FaturaRepository $repository, DatabaseManager $db, FaturaProdutosService $faturaProdutosService)
+    public function __construct(FaturaRepository $repository, DatabaseManager $db, Auth $auth, FaturaProdutosService $faturaProdutosService)
     {
         parent::__construct($repository, $db);
         $this->faturaProdutosService = $faturaProdutosService;
+        $this->auth = $auth;
+    }
+
+    public function all(){
+
+        return $this->findBy(['clienteFatura' => Auth::user()->emailPessoa])->first();
+
     }
 
     public function create(array $data){

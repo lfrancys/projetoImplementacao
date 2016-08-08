@@ -25,4 +25,5 @@ Route::resource('meu-carrinho', 'Externo\MeuCarrinhoController');
 Route::group(['prefix' => 'sistema', 'middleware' => 'auth'], function () {
     Route::resource('produto', 'Sistema\ProdutoController');
     Route::resource('dashboard', 'Sistema\DashboardController');
+    Route::resource('fatura', 'Sistema\FaturaController');
 });

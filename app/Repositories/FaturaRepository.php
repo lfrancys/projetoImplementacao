@@ -14,7 +14,7 @@ class FaturaRepository extends RepositoryAbstract{
 
     public function entity()
     {
-        return \estudo\Entities\Fatura::class;
+        return  Fatura::class;
     }
 
 }
